@@ -1,0 +1,176 @@
+.navbar-nav li.nav-item a.nav-link:hover {
+    transform: translateY(-3px)
+}
+
+.navbar-nav li.nav-item:hover a {
+    position: relative
+}
+
+.navbar-nav li.nav-item:hover a:after {
+    background-color: orange;
+    bottom: -5px;
+    content: "";
+    display: block;
+    height: 2px;
+    left: 0;
+    position: absolute;
+    width: 100%
+}
+
+.container {
+    height: 10em;
+    left: 50%;
+    margin: 0 -50% 0 0;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%)
+}
+
+input:focus {
+    border-color: orange;
+    transition: border-color .5s ease
+}
+
+.input-label {
+    display: inline-block;
+    margin-bottom: .5rem
+}
+
+.input-label:focus {
+    border-bottom: 2px solid orange;
+    outline: none
+}
+
+.form-control:focus {
+    border-color: orange;
+    box-shadow: 0 0 0 .2rem rgba(255, 87, 34, .25)
+}
+
+@keyframes slideIn {
+    0% {
+        opacity: 0;
+        transform: translateX(-100%)
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0)
+    }
+}
+
+.mx-auto {
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    animation-name: slideIn
+}
+
+input:focus+hr {
+    border-bottom: 2px solid orange
+}
+
+hr {
+    border: none;
+    border-bottom: 1px solid #ccc;
+    margin-top: .5rem
+}
+
+.input-hover-effect {
+    background-color: orange;
+    border: none;
+    height: 2px;
+    transition: all .2s ease-out
+}
+
+.form-control:hover+.input-hover-effect {
+    height: 4px
+}
+
+.border-error {
+    border-color: #ef4444
+}
+
+.fa-trash,
+button {
+    background-color: transparent
+}
+
+button[type=submit] {
+    border: none
+}
+
+.fa-trash {
+    margin-left: 25px
+}
+
+.delete,
+.edit {
+    margin-top: 5px
+}
+
+.edit {
+    position: relative;
+    top: 7px
+}
+
+.table-responsive {
+    height: 400px;
+    overflow: auto
+}
+
+.closebtn {
+    border: none;
+    color: gray;
+    cursor: pointer;
+    float: right;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 20px;
+    margin-left: 15px;
+    transition: .3s
+}
+
+.closebtn:hover {
+    color: #000
+}
+
+:root {
+    --shadow: #43a047;
+    --scrollbarBG: #eee;
+    --thumbBG: #66bb6a
+}
+
+::-webkit-scrollbar {
+    width: 16px
+}
+
+::-webkit-scrollbar-track {
+    background: var(--scrollbarBG)
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--thumbBG);
+    box-shadow: 0 -100vh 0 100vh var(--shadow), 0 0 15px 5px #000
+}
+
+.header {
+    margin-left: 10px
+}
+
+body {
+    background-color: gray;
+    height: 100vh;
+    background-size: cover;
+    background-blend-mode: overlay;
+    background-repeat: no-repeat;
+    background-position: center center;
+    position: relative;
+    z-index: 999;
+}
+
+img {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -3;
+}
