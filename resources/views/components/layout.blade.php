@@ -24,7 +24,7 @@
 
 <style>
 body {
-    /* background: url("/images/desk.jpg"), linear-gradient(to bottom right, #f5f5f5, #dcdcdc); */
+    background: url("/images/desk.jpg"), linear-gradient(to bottom right, #f5f5f5, #dcdcdc);
     height: 100vh;
     background-size: cover;
     background-blend-mode: overlay;
