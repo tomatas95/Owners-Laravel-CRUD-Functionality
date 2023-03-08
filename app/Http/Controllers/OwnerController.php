@@ -5,21 +5,38 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Owner;
 use Illuminate\Support\Facades\Session;
-
+use stdClass;
 
 class OwnerController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-        public function index()
+        public function index(Request $request)
         {
             // $owners = Owner::all();
-            $owners = Owner::orderBy('name')->get();
-            return view('owners.index', compact('owners'));
-            
-        }
+            $filterData = $request->session()->get('filterOwners', (object)['name'=>null,'surname'=>null]);
 
+            $owners = Owner::with('cars')->filter($filterData)->orderBy('name')->get();
+
+            if ($request->has('name') || $request->has('surname')) {
+                $filterData->name = $request->input('name');
+                $filterData->surname = $request->input('surname');
+                $request->session()->put('owner_filter', $filterData);
+            }
+        
+            if ($request->has('show_all')) {
+                $request->session()->forget('owner_filter');
+                $owners = Owner::with('cars')->orderBy('name')->get();
+            } 
+
+            return view('owners.index',[
+                "owners" => $owners,
+                "filterData" => $filterData,
+            ]);
+
+        }
+        
     /**
      * Show the form for creating a new resource.
      */
@@ -100,8 +117,18 @@ class OwnerController extends Controller
         
         $owner = Owner::findOrFail($id);
         $owner->delete();
-        Session::flash('message', 'Owner deleted successfully!');
+        Session::flash('message', 'Owner Listing deleted successfully!');
         Session::flash('alert-class', 'alert-success');
         return redirect('/owners');
     }
+
+    public function search(Request $request){
+        $filterOwners = new \stdClass;
+        $filterOwners->name = $request->name;
+        $filterOwners->surname = $request->surname;
+
+        $request->session()->put('filterOwners', $filterOwners);
+        return redirect()->route('owners.index');
+    }
+
 }

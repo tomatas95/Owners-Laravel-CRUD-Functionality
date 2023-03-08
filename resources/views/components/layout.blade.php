@@ -35,7 +35,7 @@ body {
 </style>
 
 <body>
-  <img src="/images/desk.jpg" alt="desk image">
+  {{-- <img src="/images/desk.jpg" alt="desk image"> --}}
 
 </div>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -46,8 +46,14 @@ body {
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav mx-auto">
             <li class="nav-item">
+                <a class="nav-link" href="{{ route('cars.index') }}"><i class="fas fa-home"></i> List All Cars</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="{{ route('owners.index') }}"><i class="fas fa-home"></i> List All Owners</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('cars.create') }}"><i class="fas fa-plus"></i> Create a new Car</a>
+              </li>
             <li class="nav-item">
               <a class="nav-link" href="{{ route('owners.create') }}"><i class="fas fa-plus"></i> Create a new Owner</a>
             </li>

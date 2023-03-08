@@ -17,9 +17,9 @@ class OwnerFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $this->faker->name(),
-            'surname' => $this->faker->name(),
-            'years' => '40'
+            'name' => fake()->firstName(),
+            'surname' => fake()->lastName(),
+            'years' => rand(18,100),
         ];
     }
 }

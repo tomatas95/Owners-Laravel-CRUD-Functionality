@@ -11,12 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('owners', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('surname');
-            $table->integer('years')->nullale()->default(null);
-            $table->timestamps();
+        Schema::table('owners', function (Blueprint $table) {
+            // $table->unsignedBigInteger("car_id")->nullable()->default(null);
+            // $table->foreignId("car_id")->references('id')->on('car');
+
         });
     }
 
@@ -25,6 +23,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('owners');
+        Schema::table('owners', function (Blueprint $table) {
+            $table->dropConstrainedForeignId("car_id");
+            
+        });
     }
 };
