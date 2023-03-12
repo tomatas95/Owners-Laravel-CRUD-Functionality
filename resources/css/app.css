@@ -200,3 +200,79 @@ img {
 select option {
     background-color: white;
 }
+
+.flag-icon {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.footer-container {
+    color: #fff;
+    padding: 20px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+}
+
+.footer a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.footer button {
+    background-color: transparent;
+    color: #fff;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.footer-item {
+    margin: 0 10px;
+    padding-top: 5px;
+}
+
+#close-footer {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.flag-icon-en {
+    background-image: url("/images/gb.svg");
+}
+
+.flag-icon-lt {
+    background-image: url("/images/lt.svg");
+}
+
+.flag-icon-jp {
+    background-image: url("/images/jp.svg");
+}
+
+.flag-icon {
+    position: relative;
+    top: 5px;
+}

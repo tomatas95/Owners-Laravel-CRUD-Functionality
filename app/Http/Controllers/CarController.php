@@ -2,14 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use stdClass;
 use App\Models\Car;
 use App\Models\Owner;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
-use stdClass;
 
 class CarController extends Controller
+
 {
+    public function __construct()
+    {
+        $this->middleware(['auth'])->only(['create']);
+        $this->middleware(['auth', 'super.permissions'])->only(['edit', 'destroy']);
+    }
     /**
      * Display a listing of the resource.
      */
@@ -49,9 +56,10 @@ class CarController extends Controller
             'owner_id' => 'required',
         ],
         [
-            'reg_number.required' => "Register Number is required.",
-            'carname.required' => "Brand Field is required.",
-            'owner_id.required' => "Selecting Car's Owner is required."
+            'reg_number.required' => __("Register Number is required"),
+            'model.required' => __("Model is required."),
+            'carname.required' =>__("Brand Field is required."),
+            'owner_id.required' => __("Selecting Car's Owner is required.")
         ]);
         
     
@@ -60,11 +68,11 @@ class CarController extends Controller
 
     
         if ($car) {
-            Session::flash('message', 'A new Owner has been created successfully!');
+            Session::flash('message', __("A new Owner has been created successfully!"));
             Session::flash('alert-class', 'alert-success');
             return redirect('/cars');
         } else {
-            return redirect('/cars/create')->withErrors(['An error occurred while creating the car Listing.']);
+            return redirect('/cars/create')->withErrors([__("An error occurred while creating the car Listing.")]);
         }
     }
 
@@ -81,6 +89,7 @@ class CarController extends Controller
      */
     public function edit($id)
     {
+        
         $owners = Owner::all();
         $car = Car::findOrFail($id);
         return view('cars.edit', ['car' => $car], compact('owners'));
@@ -98,20 +107,21 @@ class CarController extends Controller
             'owner_id' => 'required',
         ],
         [
-            'reg_number.required' => "Register Number is required.",
-            'carname.required' => "Brand Field is required.",
-            'owner_id.required' => "Selecting Car's Owner is required."
+            'reg_number.required' => __("Register Number is required"),
+            'model.required' => __("Model is required."),
+            'carname.required' =>__("Brand Field is required."),
+            'owner_id.required' => __("Selecting Car's Owner is required.")
         ]);
         
         $car = Car::findOrFail($id);
         $car->update($formFields);
     
         if ($car) {
-            Session::flash('message', 'Owner updated successfully!');
+            Session::flash('message', __("Owner updated successfully!"));
             Session::flash('alert-class', 'alert-success');
             return redirect('/cars');
         } else {
-            return redirect('/cars/create')->withErrors(['An error occurred while editing car listing.']);
+            return redirect('/cars/create')->withErrors([__("An error occurred while editing car listing.")]);
         }
     }
 
@@ -122,9 +132,9 @@ class CarController extends Controller
     {
         $car = Car::findOrFail($id);
         $car->delete();
-        Session::flash('message', 'Car Listing deleted successfully!');
+        Session::flash('message', __("Car Listing deleted successfully!"));
         Session::flash('alert-class', 'alert-success');
-        return redirect('/cars');
+        return redirect()->route('cars.index');
     }
 
     

@@ -8,6 +8,10 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@6.6.6/css/flag-icons.min.css"
+/>
 <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 
@@ -39,30 +43,85 @@ body {
 
 </div>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand header" href="{{ route('owners.index') }}">Owners</a>
+    <a class="navbar-brand header" href="{{ route('owners.index') }}">{{ __("Owners") }}</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav mx-auto">
+          @auth
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('cars.index') }}"><i class="fas fa-home"></i> List All Cars</a>
+                <a class="nav-link" href="{{ route('cars.index') }}"><i class="fas fa-home"></i>{{ __("List All Cars") }}</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('owners.index') }}"><i class="fas fa-home"></i> List All Owners</a>
+                <a class="nav-link" href="{{ route('owners.index') }}"><i class="fas fa-home"></i>{{ __("List All Owners")}}</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('cars.create') }}"><i class="fas fa-plus"></i> Create a new Car</a>
+                <a class="nav-link" href="{{ route('cars.create') }}"><i class="fas fa-plus"></i> {{ __("Create a new Car") }}</a>
               </li>
             <li class="nav-item">
-              <a class="nav-link" href="{{ route('owners.create') }}"><i class="fas fa-plus"></i> Create a new Owner</a>
-            </li>
+              <a class="nav-link" href="{{ route('owners.create') }}"><i class="fas fa-plus"></i> {{ __("Create a new Owner") }}</a>
+              @endauth
+              @guest
+              <li class="nav-item">
+                <a class="nav-link" href="{{ route('login') }}"><i class="fas fa-sign-in-alt"></i> {{ __("Log In") }}</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ route('register') }}"><i class="fas fa-user-plus"></i> {{ __("Register") }}</a>
+              </li>
+              @else
+              <li class="nav-item dropdown">
+                <a class="nav-link" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  {{ Auth::user()->name }}
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  <a class="dropdown-item" href="{{ route('logout') }}"
+                    onclick="event.preventDefault();
+                                  document.getElementById('logout-form').submit();">
+                    {{ __('Logout') }}
+                  </a>
+                  <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                  </form>
+                </div>
+              </li>
+              @endguest
         </ul>
+        <ul class="navbar-nav">
+          <li class="nav-item dropdown">
+              <a class="nav-link" href="#" id="languageDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <span class="flag-icon flag-icon-{{ session('lang', 'en') }}"></span> {{ strtoupper(session('lang', 'en')) }}
+              </a>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="languageDropdown">
+                  <a class="dropdown-item" href="{{ route('setLanguage', 'en') }}"><span class="flag-icon flag-icon-en"></span> English (EN)</a>
+                  <a class="dropdown-item" href="{{ route('setLanguage', 'lt') }}"><span class="flag-icon flag-icon-lt"></span> Lietuvių (LT)</a>
+                  <a class="dropdown-item" href="{{ route('setLanguage', 'jp') }}"><span class="flag-icon flag-icon-jp"></span> 日本 (JP)</a>
+                </div>
+          </li>
+      </ul>
+      
     </div>
 </nav>
 
   @yield('content')
-
+  <div class="footer-container">
+    <div class="footer">
+      <div class="footer-content">
+        <div class="footer-item">
+          <i class="material-icons">phone</i>
+          <a href="/" style="margin-right: 10px;">[[tel]]</a>
+        </div>
+        <div class="footer-item">
+          <i class="material-icons">email</i>
+          <a href="/">[[email]]</a>
+        </div>
+        <div class="footer-item">
+          <p>&copy; 2023 [[copyright]]</p>
+        </div>
+      </div>
+      <button id="close-footer"><i class="fas fa-times"></i></button>
+    </div>  
+  </div>
 </body>
 </html>
 
@@ -70,4 +129,9 @@ body {
 let usedLaterScript = document.createElement('script');   
 usedLaterScript.src = 'used-later.js';   
 document.body.appendChild(usedLaterScript); 
+
+document.getElementById("close-footer").addEventListener("click", function() {
+    document.querySelector(".footer").style.display = "none";
+});
+
 </script>

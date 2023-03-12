@@ -7,7 +7,7 @@
             <div class="col-md-6 mx-auto">
                 <div class="card">
                     <div class="card-header">
-                        Edit {{ $owner->name, $owner->surname }} Information!
+                        {{ __("Edit") }} {{ $owner->name, $owner->surname }} {{ __("Information") }}
                     </div>
                     <div class="card-body">
                         <form method="POST" action="{{ route('owners.update', $owner->id) }}">
@@ -15,8 +15,8 @@
                             @method('PUT')
                             <div class="form-row">
                                 <div class="form-group col">
-                                    <label for="name">Name</label>
-                                    <input type="text" class="form-control @error('name')border-error @enderror" id="name" name="name" placeholder="Enter Owner's Name.." value="{{$owner->name }}">
+                                    <label for="name">{{ __("Name") }}</label>
+                                    <input type="text" class="form-control @error('name')border-error @enderror" id="name" name="name" placeholder="{{__("Enter Owner's Name..") }}" value="{{ $owner->name }}">
                                     <hr class="input-hover-effect">
 
                                     @error('name')
@@ -24,8 +24,8 @@
                                     @enderror
                                 </div>
                                 <div class="form-group col">
-                                    <label for="surname">Surname</label>
-                                    <input type="text" class="form-control @error('name')border-error @enderror" id="surname" name="surname" placeholder="Enter Owner's Surname.."  value="{{$owner->surname }}">
+                                    <label for="surname">{{ __("Surname") }}</label>
+                                    <input type="text" class="form-control @error('name')border-error @enderror" id="surname" name="surname" placeholder="{{ __("Enter Owner's Surname..") }}  "  value="{{$owner->surname  }}">
                                     <hr class="input-hover-effect">
 
                                     @error('surname')
@@ -34,8 +34,8 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="years">Years</label>
-                                <input type="number" class="form-control @error('name')border-error @enderror" id="years" name="years" placeholder="How old is the Owner?"  value="{{$owner->years }}">
+                                <label for="years">{{ __("Years") }}</label>
+                                <input type="number" class="form-control @error('name')border-error @enderror" id="years" name="years" placeholder="{{ __("How old is the Owner?") }} "  value="{{$owner->years }}">
                                 <hr class="input-hover-effect">
 
                                 @error('years')
@@ -44,7 +44,7 @@
                             </div>
                             @if($errors->any())
                             <div class="alert alert-danger">
-                                <p>You must fix these errors before proceeding:</p>
+                                <p>{{ __("You must fix these errors before proceeding") }}:</p>
                             <ul>
                                 @foreach ($errors->all() as $error)
                                     <li>{{ $error }}</li>
@@ -52,7 +52,7 @@
                             </ul>
                         </div>
                     @endif
-                            <button type="submit" class="btn btn-primary">Save Information </button>
+                            <button type="submit" class="btn btn-primary">{{ __("Save Information") }} </button>
                         </form>
                     </div>
                 </div>

@@ -2,6 +2,9 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\IndexPermissionsMiddleware;
+use App\Http\Middleware\LanguageMiddleware;
+use App\Http\Middleware\SuperPermissions;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -13,6 +16,11 @@ class Kernel extends HttpKernel
      *
      * @var array<int, class-string|string>
      */
+    // protected $routeMiddleware = [
+    //     'super.permissions' => SuperPermissions::class,
+    // ];
+
+
     protected $middleware = [
         // \App\Http\Middleware\TrustHosts::class,
         \App\Http\Middleware\TrustProxies::class,
@@ -21,6 +29,8 @@ class Kernel extends HttpKernel
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
+        \App\Http\Middleware\ReplaceShortCodes::class,
+
     ];
 
     /**
@@ -36,6 +46,7 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            LanguageMiddleware::class,
         ],
 
         'api' => [
@@ -63,5 +74,7 @@ class Kernel extends HttpKernel
         'signed' => \App\Http\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        'super.permissions' => SuperPermissions::class,
+        
     ];
 }

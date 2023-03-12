@@ -3,16 +3,17 @@
 @section('content')
 <div class="container">
     <x-flash-message />
+
     <div class="table-responsive table-striped table-dark table-hover mx-auto">
         <table class="table table-striped table-dark table-hover mx-auto">
-            <caption>List of owners</caption>
+            <caption>{{ __("List of Owners") }}</caption>
             <thead>
                 <tr>
-                    <th scope="col">Name</th>
-                    <th scope="col">Surname</th>
-                    <th scope="col">Years</th>
-                    <th scope="col">Owned Cars</th>
-                    <th scope="col">Action</th>
+                    <th scope="col">{{ __("Name") }}</th>
+                    <th scope="col">{{ __("Surname") }}</th>
+                    <th scope="col">{{ __("Years") }}</th>
+                    <th scope="col">{{ __("Owned Cars") }}</th>
+                    <th scope="col">{{ __("Action") }}</th>
                 </tr>
             </thead>
             <tbody>
@@ -20,15 +21,15 @@
                     <form class="form-inline" action="{{ route('owners.search') }}" method="POST">
                         @csrf
                         <div class="input-fields form-group col-md-5">
-                            <label for="name" class="sr-only">Name</label>
-                            <input type="text" class="form-control" id="name" name="name" placeholder="Name" value="{{ $filterData->name }}">
+                            <label for="name" class="sr-only">{{ __("Name") }}</label>
+                            <input type="text" class="form-control" id="name" name="name" placeholder="{{ __("Name") }}" value="{{ $filterData->name }}">
                         </div>
                         <div class="input-fields form-group col-md-5">
-                            <label for="surname" class="sr-only">Surname</label>
-                            <input type="text" class="form-control" id="surname" name="surname" placeholder="Surname" value="{{  $filterData->surname }}">
+                            <label for="surname" class="sr-only">{{ __("Surname") }}</label>
+                            <input type="text" class="form-control" id="surname" name="surname" placeholder="{{ __("Surname") }}" value="{{  $filterData->surname }}">
                         </div>
-                        <button type="submit" class="hover-shine btn btn-primary col-md-2">Search</button>
-                        <a href="{{ route('owners.index', ['show_all' => 1]) }}" class="hover-shine btn btn-primary col-md-2 ms-2">Show All</a>
+                        <button type="submit" class="hover-shine btn btn-primary col-md-2">{{ __("Search") }}</button>
+                        <a href="{{ route('owners.index', ['show_all' => 1]) }}" class="hover-shine btn btn-primary col-md-2 ms-2">{{ __("Show All") }}</a>
                     </form>
                 </tr>
                 @unless ($owners->isEmpty())
@@ -60,7 +61,7 @@
                 @else
                 <tr class="text-center">
                     <td class="px-4 py-8 border-top border-bottom border-gray text-lg" colspan="5">
-                        <p class="mb-0">Either such Owner is not Found or the table is empty!</p>
+                        <p class="mb-0">{{ __("Either such Owner is not Found or the table is empty") }}</p>
                     </td>
                 </tr>
                 @endunless

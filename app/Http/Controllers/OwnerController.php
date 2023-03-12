@@ -9,6 +9,11 @@ use stdClass;
 
 class OwnerController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['auth'])->only(['create']);
+        $this->middleware(['auth', 'super.permissions'])->only(['edit', 'destroy']);
+    }
     /**
      * Display a listing of the resource.
      */
@@ -54,17 +59,22 @@ class OwnerController extends Controller
         'name' => 'required|max:30',
         'surname' => 'required|max:30',
         'years' => 'required|integer|max:200|gte:1'
+    ],
+    [
+        'name' => __("Name is required."),
+        'surname.required' => __("Surname is required."),
+        'years.required' =>__("Years is required."),
     ]);
     
 
     $owner = Owner::create($formFields);
 
     if ($owner) {
-        Session::flash('message', 'A new Owner has been created successfully!');
+        Session::flash('message', __("A new Owner has been created successfully!"));
         Session::flash('alert-class', 'alert-success');
         return redirect('/owners');
     } else {
-        return redirect('/owners/create')->withErrors(['An error occurred while creating the owner.']);
+        return redirect('/owners/create')->withErrors([__("An error occurred while creating the owner")]);
     }
 }
 
@@ -95,17 +105,22 @@ class OwnerController extends Controller
             'name' => 'required|max:30',
             'surname' => 'required|max:30',
             'years' => 'required|integer|max:200|gte:1'
+        ],
+        [
+            'name' => __("Name is required."),
+            'surname.required' => __("Surname is required."),
+            'years.required' =>__("Years is required."),
         ]);
         
         $owner = Owner::findOrFail($id);
         $owner->update($formFields);
     
         if ($owner) {
-            Session::flash('message', 'Owner updated successfully!');
+            Session::flash('message', __("Owner updated successfully!"));
             Session::flash('alert-class', 'alert-success');
             return redirect('/owners');
         } else {
-            return redirect('/owners/create')->withErrors(['An error occurred while creating the owner.']);
+            return redirect('/owners/create')->withErrors([__("An error occurred while creating the owner")]);
         }
     }
 
@@ -117,10 +132,10 @@ class OwnerController extends Controller
         
         $owner = Owner::findOrFail($id);
         $owner->delete();
-        Session::flash('message', 'Owner Listing deleted successfully!');
+        Session::flash('message', __("Owner Listing deleted successfully"));
         Session::flash('alert-class', 'alert-success');
-        return redirect('/owners');
-    }
+        return redirect()->route('owners.index');
+        }
 
     public function search(Request $request){
         $filterOwners = new \stdClass;

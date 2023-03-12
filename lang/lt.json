@@ -1,0 +1,82 @@
+{
+    "Log In": "Prisijungti",
+    "Register": "Registruotis",
+    "List All Cars": "Automobiilų sąrašas",
+    "List All Owners": "Savininkų sąrašas",
+    "Owners": "Savininkai",
+    "Edit": "Koreguoti",
+    "Information": "Informacija",
+    "Save Information": "Išsaugoti Informaciją",
+    "List of Owners": "Sąrašas Savininkų",
+    "Either such Owner is not Found or the table is empty": "Arba šis savininkas neagzistuoja, arba lentėlė yra tusčia",
+    "Either such Car Listing is not Found or the table is empty": "Arba ši mašinos laukelis neagzistuoja, arba lentėlė yra tusčia",
+    "You are logged in!": "Jūs prisijungėte",
+    "Dashboard": "Namų laukėlis",
+    "You must fix these errors before proceeding": "Jūs turite sutaisyti šias klaidas, kad galetumėte tęsti",
+
+    "Search": "Ieškoti",
+    "Show All": "Rodyti viską",
+    "Name": "Vardas",
+    "Surname": "Pavardė",
+    "Years": "Metai",
+    "Owned Cars": "Turimos mašinos",
+    "Action": "Veiksmai",
+
+    "Create a new Car": "Sukurti Mašinos laukelį",
+    "Create a new Owner": "Sukurti Savininko laukelį",
+    "Create a new Car Listing!": "Sukurti naują mašinos laukelį",
+    "Register Number": "Registracijos Numeris",
+    "Model": "Modelis",
+    "Brand": "Marke",
+    "Car's Owner": "Automobilio Savininkas",
+    "Add a new Car Listing!": "Prideti naują mašinos laukelį",
+
+    "Create a new Owner!": "Prideti naują mašinos laukelį",
+    "Name": "Vardas",
+    "Enter Owner's Name..": "Įvesti Savininko Vardą..",
+    "Enter Owner's Surname..": "Įvesti Savininko Pavardę..",
+    "Years": "Metai",
+    "How old is the Owner?": "Kiek metų Savininkui?",
+    "Add a new Owner!": "Sukurti naują Savininką",
+
+    "Enter Car's Register Number": "Įveskite Mašinos Registracijos Numerį",
+    "Enter Car's Model": "Įveskite Mašinos Modelį",
+    "Enter Car's Brand": "Įveskite Mašinos Markę",
+    "All Owners": "Visi Savininkai",
+
+    "Login": "Prisijungti",
+    "Remember Me": "Prisiminti savo parašytus duomenis",
+    "Password": "Slaptažodis",
+    "email": "Paštas",
+    "Forgot Your Password?": "Pamiršote savo slaptažodį?",
+    "Email Address": "Pašto adresas",
+
+    "Enter Car's Register Number..": "Įveskite automobilio registracijos numerį..",
+    "Enter Car's Model..": "Įveskite automobilio modelį..",
+    "What's the Car's Brand?": "Koks automobilio prekės ženklas?",
+    "Select Car's Owner": "Pasirinkite automobilio savininką",
+    "Car's Owner": "Automobilio savininkas",
+
+    "A new Owner has been created successfully!": "Sėkmingai sukurtas naujas Savininkas!",
+    "An error occurred while creating the owner.": "Kuriant savininką įvyko klaida.",
+    "Owner updated successfully!": "Savininkas sėkmingai atnaujintas",
+    "Owner Listing deleted successfully!": "Savininko Sąrašas sėkmingai ištrintas!",
+    "Name is required.": "Būtina nurodyti vardą.",
+    "Surname is required.": "Būtina nurodyti pavardę.",
+    "Years is required.": "Metų laukas būtina nurodyti amžių.",
+    "Register Number is required": "Reikalingas registracijos numeris",
+    "Model is required.": "Reikalingas modelio laukas turi būti užpildytas.",
+    "Brand Field is required.": "Prekės ženklo laukas yra privalomas.",
+    "Selecting Car's Owner is required.": "Būtina pasirinkti automobilio savininką.",
+    "A new Owner has been created successfully!": "Sėkmingai sukurtas naujas Savininkas!",
+    "An error occurred while creating the car Listing.": "Kuriant automobilio Sąrašas įvyko klaida.",
+    "Owner updated successfully!": "Savininkas sėkmingai atnaujino!",
+    "An error occurred while editing car listing.": "Redaguojant automobilio sąrašą įvyko klaida.",
+    "Car Listing deleted successfully!": "Automobilių sąrašas sėkmingai ištrintas!",
+
+    "Owner Listing deleted successfully": "Savininkas sėkmingai ištrintas"
+
+
+
+
+}
