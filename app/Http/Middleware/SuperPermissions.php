@@ -26,7 +26,7 @@ class SuperPermissions
         // error_log('SuperPermissions middleware triggered.');
         // error_log('User: ' . ($user ? $user->id : 'guest'));
 
-        return redirect('/')->with('message', 'You do not have the permission to access this page.');
+        return redirect('/')->with('message', __("You do not have the permission to access this page."));
     }
     
 

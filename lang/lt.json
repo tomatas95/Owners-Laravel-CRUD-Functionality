@@ -74,9 +74,15 @@
     "An error occurred while editing car listing.": "Redaguojant automobilio sąrašą įvyko klaida.",
     "Car Listing deleted successfully!": "Automobilių sąrašas sėkmingai ištrintas!",
 
-    "Owner Listing deleted successfully": "Savininkas sėkmingai ištrintas"
-
-
-
+    "Owner Listing deleted successfully": "Savininkas sėkmingai ištrintas",
+    "Home": "Namai",
+    "A fresh verification link has been sent to your email address.": "Jūsų el. pašto adresu buvo išsiųsta nauja patvirtinimo nuoroda.",
+    "Before proceeding, please check your email for a verification link.": "Prieš tęsdami patikrinkite el. paštą, ar nėra patvirtinimo nuorodos.",
+    "If you did not receive the email": "Jei negavote el",
+    "click here to request another": "spustelėkite čia ir paprašykite kito",
+    "Logout": "Atsijungti",
+    "Reset Password": "Atstatyti slaptažodį",
+    "Send Password Reset Link": "Siųsti slaptažodžio nustatymo iš naujo nuorodą",
+    "You do not have the permission to access this page.": "Neturite leidimo pasiekti šį puslapį"
 
 }

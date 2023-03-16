@@ -260,19 +260,8 @@ select option {
     top: 0;
 }
 
-.flag-icon-en {
-    background-image: url("/images/gb.svg");
-}
-
-.flag-icon-lt {
-    background-image: url("/images/lt.svg");
-}
-
-.flag-icon-jp {
-    background-image: url("/images/jp.svg");
-}
-
-.flag-icon {
-    position: relative;
-    top: 5px;
+a[disabled] {
+    color: #999;
+    pointer-events: none;
+    text-decoration: none;
 }

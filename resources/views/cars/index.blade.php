@@ -65,7 +65,7 @@
                 @else
                 <tr class="text-center">
                     <td class="px-4 py-8 border-top border-bottom border-gray text-lg" colspan="5">
-                        <p class="mb-0">Either such Car Listing is not Found or the table is empty!</p>
+                        <p class="mb-0">{{ __("Either such Car Listing is not Found or the table is empty!") }}</p>
                     </td>
                 </tr>
                 

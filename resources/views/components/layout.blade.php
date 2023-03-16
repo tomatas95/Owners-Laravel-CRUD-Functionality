@@ -69,6 +69,9 @@ body {
               <li class="nav-item">
                 <a class="nav-link" href="{{ route('register') }}"><i class="fas fa-user-plus"></i> {{ __("Register") }}</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/"><i class="fas fa-home"></i> {{ __("Home") }}</a>
+              </li>
               @else
               <li class="nav-item dropdown">
                 <a class="nav-link" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -135,3 +138,23 @@ document.getElementById("close-footer").addEventListener("click", function() {
 });
 
 </script>
+
+
+<style>
+  .flag-icon-en {
+    background-image: url("/images/gb.svg");
+}
+
+.flag-icon-lt {
+    background-image: url("/images/lt.svg");
+}
+
+.flag-icon-jp {
+    background-image: url("/images/jp.svg");
+}
+
+.flag-icon {
+    position: relative;
+    top: 5px;
+}
+</style>

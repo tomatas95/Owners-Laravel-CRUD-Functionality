@@ -72,5 +72,16 @@
     "An error occurred while editing car listing.": "車のリストの編集中にエラーが発生しました。",
     "Car Listing deleted successfully!": "車のリストが正常に削除されました!",
 
-    "Owner Listing deleted successfully": "所有者リストが正常に削除されました"
+    "Owner Listing deleted successfully": "所有者リストが正常に削除されました",
+    "Home": "家",
+    "A fresh verification link has been sent to your email address.": "新しい確認リンクがあなたのメール アドレスに送信されました",
+    "Before proceeding, please check your email for a verification link.": "続行する前に、メールで確認リンクを確認してください。",
+    "If you did not receive the email": "メールが届かない場合",
+    "click here to request another": "ここをクリックして別のものをリクエストする",
+    "Logout": "ログアウト",
+    "Reset Password": "パスワードを再設定する",
+    "Send Password Reset Link": "パスワードリセットリンクを送信",
+    "You do not have the permission to access this page.": "このページにアクセスする権限がありません",
+    "Car's Brand": "車のブランド"
+
 }

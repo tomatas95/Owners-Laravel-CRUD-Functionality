@@ -1,4 +1,5 @@
-@extends('layouts.app')
+@extends('components.layout')
+
 
 @section('content')
 <div class="container">
@@ -58,7 +59,7 @@
                                 </button>
 
                                 @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
+                                    <a class="btn btn-link" href="{{ route('password.request') }}" disabled>
                                         {{ __('Forgot Your Password?') }}
                                     </a>
                                 @endif
@@ -71,3 +72,8 @@
     </div>
 </div>
 @endsection
+
+
+<style>
+
+</style>
