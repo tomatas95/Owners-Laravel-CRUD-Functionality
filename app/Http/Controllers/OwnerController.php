@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\OwnerRequest;
 use Illuminate\Http\Request;
 use App\Models\Owner;
 use Illuminate\Support\Facades\Session;
@@ -53,21 +54,10 @@ class OwnerController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-{
-    $formFields = $request->validate([
-        'name' => 'required|max:30',
-        'surname' => 'required|max:30',
-        'years' => 'required|integer|max:200|gte:1'
-    ],
-    [
-        'name' => __("Name is required."),
-        'surname.required' => __("Surname is required."),
-        'years.required' =>__("Years is required."),
-    ]);
-    
+    public function store(OwnerRequest $request)
+{   
 
-    $owner = Owner::create($formFields);
+    $owner = Owner::create($request->all());
 
     if ($owner) {
         Session::flash('message', __("A new Owner has been created successfully!"));
@@ -99,21 +89,11 @@ class OwnerController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(OwnerRequest $request, $id)
     {
-        $formFields = $request->validate([
-            'name' => 'required|max:30',
-            'surname' => 'required|max:30',
-            'years' => 'required|integer|max:200|gte:1'
-        ],
-        [
-            'name' => __("Name is required."),
-            'surname.required' => __("Surname is required."),
-            'years.required' =>__("Years is required."),
-        ]);
-        
+       
         $owner = Owner::findOrFail($id);
-        $owner->update($formFields);
+        $owner->update($request->all());
     
         if ($owner) {
             Session::flash('message', __("Owner updated successfully!"));

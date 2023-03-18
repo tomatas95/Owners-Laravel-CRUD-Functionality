@@ -6,7 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 <link
   rel="stylesheet"
@@ -21,8 +20,6 @@
 <!-- jQuery, Popper.js, and Bootstrap JavaScript -->
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-eZsKsVe8wH3/Hl3Zgxy4BJvMZ9jKzHYe52DR2PdPYO6vXBx6cKjEiBZ6OshU0vEd9Wc8+PscTzTbT02KjZsWwQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
@@ -107,24 +104,7 @@ body {
 </nav>
 
   @yield('content')
-  <div class="footer-container">
-    <div class="footer">
-      <div class="footer-content">
-        <div class="footer-item">
-          <i class="material-icons">phone</i>
-          <a href="/" style="margin-right: 10px;">[[tel]]</a>
-        </div>
-        <div class="footer-item">
-          <i class="material-icons">email</i>
-          <a href="/">[[email]]</a>
-        </div>
-        <div class="footer-item">
-          <p>&copy; 2023 [[copyright]]</p>
-        </div>
-      </div>
-      <button id="close-footer"><i class="fas fa-times"></i></button>
-    </div>  
-  </div>
+  
 </body>
 </html>
 
@@ -141,7 +121,7 @@ document.getElementById("close-footer").addEventListener("click", function() {
 
 
 <style>
-  .flag-icon-en {
+ .flag-icon-en {
     background-image: url("/images/gb.svg");
 }
 

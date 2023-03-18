@@ -14,31 +14,31 @@
                             <div class="form-row">
                                 <div class="form-group col">
                                     <label for="reg_number">{{ __("Register Number") }}</label>
-                                    <input type="text" class="form-control @error('reg_number')border-error @enderror" id="reg_number" name="reg_number" placeholder="{{ __("Enter Car's Register Number..") }}" value="{{ old('reg_number') }}">
+                                    <input type="text" class="form-control @error('reg_number')is-invalid @enderror" id="reg_number" name="reg_number" placeholder="{{ __("Enter Car's Register Number..") }}" value="{{ old('reg_number') }}">
                                     <hr class="input-hover-effect">
 
                                     @error('reg_number')
-                                    <div class="text-danger small mt-1">{{$message}}</div>
+                                    <div class="text-danger invalid-feedback small mt-1">{{$message}}</div>
                                     @enderror
                                 </div>
                                 <div class="form-group col">
                                     <label for="model">{{ __("Model") }}</label>
-                                    <input type="text" class="form-control @error('model')border-error @enderror" id="model" name="model" placeholder="{{ __("Enter Car's Model..") }}" value="{{ old('model') }}">
+                                    <input type="text" class="form-control @error('model')is-invalid @enderror" id="model" name="model" placeholder="{{ __("Enter Car's Model..") }}" value="{{ old('model') }}">
                                     <hr class="input-hover-effect">
 
                                     @error('model')
-                                    <div class="text-danger small mt-1">{{$message}}</div>
+                                    <div class="text-danger invalid-feedback small mt-1">{{$message}}</div>
                                     @enderror
                                 </div>
                             </div>
                             <div class="form-row">
                             <div class="form-group col">
                                 <label for="carname">{{ __("Brand") }}</label>
-                                <input type="text" class="form-control @error('carname')border-error @enderror" id="carname" name="carname" placeholder="{{ __("What's the Car's Brand?") }}" value="{{ old('carname') }}">
+                                <input type="text" class="form-control @error('carname')is-invalid @enderror" id="carname" name="carname" placeholder="{{ __("What's the Car's Brand?") }}" value="{{ old('carname') }}">
                                 <hr class="input-hover-effect">
 
                                 @error('carname')
-                                    <div class="text-danger small mt-1">{{$message}}</div>
+                                    <div class="text-danger invalid-feedback small mt-1">{{$message}}</div>
                                 @enderror
                             </div>
                             <div class="form-group col">
@@ -51,7 +51,7 @@
                                 </select>
                                 <hr class="input-hover-effect">
                                 @error('owner_id')
-                                    <div class="text-danger small mt-1">{{$message}}</div>
+                                    <div class="text-danger invalid-feedback small mt-1">{{$message}}</div>
                                 @enderror
                             </div>
                             </div>                            

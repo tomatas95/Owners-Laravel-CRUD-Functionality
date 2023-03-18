@@ -17,8 +17,16 @@
     width: 100%
 }
 
+.box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 90vh;
+}
+
 .container {
-    height: 10em;
+    max-height: 500px;
+    overflow-y: auto;
     left: 50%;
     margin: 0 -50% 0 0;
     position: absolute;

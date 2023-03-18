@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CarRequest;
 use stdClass;
 use App\Models\Car;
 use App\Models\Owner;
@@ -47,28 +48,12 @@ class CarController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CarRequest $request)
     {
-        $formFields = $request->validate([
-            'reg_number' => 'required|max:10',
-            'model' => 'required|max:30',
-            'carname' => 'required|max:50',
-            'owner_id' => 'required',
-        ],
-        [
-            'reg_number.required' => __("Register Number is required"),
-            'model.required' => __("Model is required."),
-            'carname.required' =>__("Brand Field is required."),
-            'owner_id.required' => __("Selecting Car's Owner is required.")
-        ]);
-        
-    
-        $car = Car::create($formFields);
-        // dd($car);
-
+        $car = Car::create($request->all());
     
         if ($car) {
-            Session::flash('message', __("A new Owner has been created successfully!"));
+            Session::flash('message', __("A new Car Listing has been created successfully!"));
             Session::flash('alert-class', 'alert-success');
             return redirect('/cars');
         } else {
@@ -98,23 +83,10 @@ class CarController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
-    {
-        $formFields = $request->validate([
-            'reg_number' => 'required|max:10',
-            'model' => 'required|max:30',
-            'carname' => 'required|max:50',
-            'owner_id' => 'required',
-        ],
-        [
-            'reg_number.required' => __("Register Number is required"),
-            'model.required' => __("Model is required."),
-            'carname.required' =>__("Brand Field is required."),
-            'owner_id.required' => __("Selecting Car's Owner is required.")
-        ]);
-        
+    public function update(CarRequest $request, $id)
+    {        
         $car = Car::findOrFail($id);
-        $car->update($formFields);
+        $car->update($request->all());
     
         if ($car) {
             Session::flash('message', __("Owner updated successfully!"));

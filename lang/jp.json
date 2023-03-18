@@ -82,6 +82,24 @@
     "Reset Password": "パスワードを再設定する",
     "Send Password Reset Link": "パスワードリセットリンクを送信",
     "You do not have the permission to access this page.": "このページにアクセスする権限がありません",
-    "Car's Brand": "車のブランド"
+    "Car's Brand": "車のブランド",
+    "The registration number must be in the format of three letters followed by three numbers.": "登録番号は、3つのアルファベットに3つの数字が続く形式である必要があります。",
+    "The brand name must not be greater than :max characters.": "ブランド名は、:max文字以下でなければなりません。",
+    "The brand name must be at least :min characters.": "ブランド名は、最低でも:min文字である必要があります。",
+    "The model must be at least :min characters.": "モデルは最低でも:min文字である必要があります。",
+    "The model must not be greater than :max characters.": "モデルは、:max文字より大きくてはならない。",
+    "Register Number must not be greater than :max characters.": "は、:max文字より大きくてはならない。",
+    "Register Number must be at least :min characters.": "は、最低でも:min文字でなければなりません。",
+    "The brand name must only contain alphabetical characters.": "ブランド名は、アルファベットのみとします。",
+    "A new Car Listing has been created successfully!": "新しいCar Listingの作成が完了しました。",
 
+    "The name must be at least :min characters.": "名前は最低でも:min文字である必要があります。",
+    "The name must not be greater than :max characters.": "名前は、:max文字より大きくてはならない。",
+    "The surname must be at least :min characters.": "苗字は最低でも:min文字である必要があります。",
+    "The surname must not be greater than :max characters.": "苗字は、:max文字以上であってはならない。",
+    "Years field must be an integer.": "フィールドは整数値でなければならない。",
+    "The Years field must be at least :min old.": "フィールドは、少なくとも:min oldでなければならない。",
+    "The Years field must not be greater than :max": "フィールドは、:maxより大きくてはならない。",
+    "Name must contain only alphabetic characters.": "名前にはアルファベットのみを使用すること。",
+    "Surname must contain only alphabetic characters.": "姓は、アルファベットのみとします。"
 }
