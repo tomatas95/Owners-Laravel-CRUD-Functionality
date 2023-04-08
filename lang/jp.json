@@ -101,5 +101,7 @@
     "The Years field must be at least :min old.": "フィールドは、少なくとも:min oldでなければならない。",
     "The Years field must not be greater than :max": "フィールドは、:maxより大きくてはならない。",
     "Name must contain only alphabetic characters.": "名前にはアルファベットのみを使用すること。",
-    "Surname must contain only alphabetic characters.": "姓は、アルファベットのみとします。"
+    "Surname must contain only alphabetic characters.": "姓は、アルファベットのみとします。",
+    "Car Photos": "車の写真",
+    "Car Photo": "車の写真"
 }

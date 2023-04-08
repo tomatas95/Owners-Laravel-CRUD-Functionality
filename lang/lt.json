@@ -101,5 +101,7 @@
     "The Years field must be at least :min old.": "Metai turi būti ne mažesnis nei :min.",
     "The Years field must not be greater than :max": "Metai neturi būti didesnis nei :max.",
     "Name must contain only alphabetic characters.": "Vardą turi sudaryti tik abėcėlės raidės.",
-    "Surname must contain only alphabetic characters.": "Pavardę turi sudaryti tik abėcėlės raidės."
+    "Surname must contain only alphabetic characters.": "Pavardę turi sudaryti tik abėcėlės raidės.",
+    "Car Photos": "Jūsų mašinos paveiksliukai",
+    "Car Photo": "Mašinos paveiksliukas"
 }

@@ -1,6 +1,7 @@
 @extends('components.layout')
 
 @section('content')
+<x-flash-message />
     <div class="box">
     <div class="container">
         <div class="row">
@@ -10,7 +11,7 @@
                         {{ __("Edit") }} {{ $car->reg_number, $car->carname }} {{ __("Information") }}!
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('cars.update', $car->id) }}">
+                        <form method="POST" action="{{ route('cars.update', $car->id) }}" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
                             <div class="form-row">
@@ -56,7 +57,13 @@
                                         <div class="text-danger invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                </div>            
+                                </div>
+                                <div class="form-group">
+                                    <label for="car_photos">{{ __("Car Photos") }}</label>
+                                    <div id="photo_inputs">
+                                        <input type="file" name="car_photos[]" class="form-control-file">
+                                    </div>
+                                </div>
                             @if($errors->any())
                             <div class="alert alert-danger">
                                 <p>{{ __("You must fix these errors before proceeding") }}:</p>
@@ -69,6 +76,18 @@
                     @endif
                             <button type="submit" class="btn btn-primary">{{ __("Save Information") }}</button>
                         </form>
+                        <div class="image-container">
+                            @foreach ($car->carImages as $image)
+                            <div class="image-wrapper">
+                                <img class="carBlueprintImage" src="{{ Storage::url($image->filename) }}" alt="{{ __('Car Photo') }}">
+                                <form id="delete-form-{{ $image->id }}" action="{{ route('carImages.destroy', $image->id) }}" method="post">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="photoDelete btn btn-danger" type="submit"><i class="fas fa-times"></i></button>
+                                </form>
+                            </div>
+                        @endforeach
+                        </div>
                     </div>
                 </div>
             </div>

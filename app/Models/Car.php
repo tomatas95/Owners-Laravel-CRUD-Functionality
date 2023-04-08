@@ -2,9 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\CarImage;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 
 class Car extends Model
@@ -20,6 +21,10 @@ class Car extends Model
 
     public function owner(){
         return $this->belongsTo(Owner::class,'owner_id');
+    }
+
+    public function carImages(){
+        return $this->hasMany(CarImage::class);
     }
 
     public function scopeFilter(Builder $query, $filterCars){

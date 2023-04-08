@@ -11,7 +11,7 @@
                     </div>
                     <div class="card-body">
                         <div class="form-container">
-                        <form method="POST" action="{{ route('owners.update', $owner->id) }}">
+                        <form method="POST" action="{{ route('owners.update', $owner->id) }}" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
                             <div class="form-row">

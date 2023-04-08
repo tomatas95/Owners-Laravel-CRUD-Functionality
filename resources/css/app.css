@@ -273,3 +273,56 @@ a[disabled] {
     pointer-events: none;
     text-decoration: none;
 }
+
+.carBlueprintImage {
+    width: 100px;
+    height: 100px;
+    z-index: 2;
+    position: relative;
+}
+
+.image-container {
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.carBlueprintImage {
+    width: 100%;
+    height: auto;
+}
+
+.carBlueprintImage {
+    position: relative;
+    margin-bottom: 15px;
+    /* top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); */
+}
+
+
+/* .image-container {
+        display: flex;
+        flex-wrap: wrap;
+    } */
+
+.image-wrapper {
+    position: relative;
+    flex-basis: calc(33.33% - 10px);
+    margin: 5px;
+}
+
+.carBlueprintImage {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.photoDelete {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 4;
+}

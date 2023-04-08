@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CarRequest;
 use stdClass;
 use App\Models\Car;
 use App\Models\Owner;
 use Illuminate\Http\Request;
+use App\Http\Requests\CarRequest;
+use App\Models\CarImage;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
 
 class CarController extends Controller
 
@@ -86,17 +88,27 @@ class CarController extends Controller
     public function update(CarRequest $request, $id)
     {        
         $car = Car::findOrFail($id);
+        
+        // File Uploading
+        if ($request->hasFile('car_photos')) {
+            $car_photos = $request->file('car_photos');
+            
+            // Upload new photos
+            foreach ($car_photos as $photo) {
+                $filename = $photo->store('public/car_photos');
+                $car->carImages()->create(['filename' => $filename]);
+            }
+        }
         $car->update($request->all());
     
         if ($car) {
-            Session::flash('message', __("Owner updated successfully!"));
+            Session::flash('message', __("Car updated successfully!"));
             Session::flash('alert-class', 'alert-success');
             return redirect('/cars');
         } else {
             return redirect('/cars/create')->withErrors([__("An error occurred while editing car listing.")]);
         }
     }
-
     /**
      * Remove the specified resource from storage.
      */

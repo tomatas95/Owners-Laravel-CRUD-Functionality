@@ -3,8 +3,10 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CarController;
+use App\Http\Controllers\CarImageController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\OwnerController;
+use App\Models\CarImage;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,7 +36,6 @@ Route::resource('cars', CarController::class);
 
 Route::post('/owners/search', [OwnerController::class, 'search'])->name('owners.search');
 Route::post('/cars/search', [CarController::class, 'search'])->name('cars.search');
-
 Route::get('/', function(){
     return view('index');
 });
@@ -43,3 +44,4 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/setLanguage/{language}', [LanguageController::class,'setLanguage'])->name('setLanguage');
+Route::delete('/carImages/{id}', [CarImageController::class, 'destroy'])->name('carImages.destroy');
