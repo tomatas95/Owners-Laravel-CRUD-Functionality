@@ -52,8 +52,18 @@ class CarController extends Controller
      */
     public function store(CarRequest $request)
     {
+        
         $car = Car::create($request->all());
     
+        if ($request->hasFile('car_photos')) {
+            $car_photos = $request->file('car_photos');
+
+            foreach ($car_photos as $photo) {
+                $filename = $photo->store('public/car_photos');
+                $car->carImages()->create(['filename' => $filename]);
+            }
+        }
+
         if ($car) {
             Session::flash('message', __("A new Car Listing has been created successfully!"));
             Session::flash('alert-class', 'alert-success');
@@ -89,11 +99,9 @@ class CarController extends Controller
     {        
         $car = Car::findOrFail($id);
         
-        // File Uploading
         if ($request->hasFile('car_photos')) {
             $car_photos = $request->file('car_photos');
-            
-            // Upload new photos
+
             foreach ($car_photos as $photo) {
                 $filename = $photo->store('public/car_photos');
                 $car->carImages()->create(['filename' => $filename]);

@@ -9,7 +9,7 @@
                         {{ __("Create a new Car Listing!") }}
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('cars.store') }}">
+                        <form method="POST" action="{{ route('cars.store') }}" enctype="multipart/form-data">
                             @csrf
                             <div class="form-row">
                                 <div class="form-group col">
@@ -55,16 +55,22 @@
                                 @enderror
                             </div>
                             </div>                            
-                            @if($errors->any())
-                            <div class="alert alert-danger">
-                                <p>{{ __("You must fix these errors before proceeding") }}:</p>
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
+                        <div class="form-group">
+                            <label for="car_photos">{{ __("Car Photos") }}</label>
+                            <div id="photo_inputs">
+                                <input type="file" name="car_photos[]" class="form-control-file">
+                            </div>
                         </div>
-                    @endif
+                    @if($errors->any())
+                    <div class="alert alert-danger">
+                        <p>{{ __("You must fix these errors before proceeding") }}:</p>
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
                             <button type="submit" class="btn btn-primary">{{ __("Add a new Car Listing!") }}</button>
                         </form>
                     </div>
