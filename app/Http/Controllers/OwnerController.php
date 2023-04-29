@@ -18,30 +18,26 @@ class OwnerController extends Controller
     /**
      * Display a listing of the resource.
      */
-        public function index(Request $request)
-        {
-            // $owners = Owner::all();
-            $filterData = $request->session()->get('filterOwners', (object)['name'=>null,'surname'=>null]);
+    public function index(Request $request)
+    {
+        $filterData = $request->session()->get('filterOwners', (object)['name'=>null,'surname'=>null]);
 
-            $owners = Owner::with('cars')->filter($filterData)->orderBy('name')->get();
-
-            if ($request->has('name') || $request->has('surname')) {
-                $filterData->name = $request->input('name');
-                $filterData->surname = $request->input('surname');
-                $request->session()->put('owner_filter', $filterData);
-            }
-        
-            if ($request->has('show_all')) {
-                $request->session()->forget('owner_filter');
-                $owners = Owner::with('cars')->orderBy('name')->get();
-            } 
-
-            return view('owners.index',[
-                "owners" => $owners,
-                "filterData" => $filterData,
-            ]);
-
+        $owners = Owner::with('cars')->filter($filterData)->orderBy('name')->get();
+        if ($request->has('name') || $request->has('surname')) {
+            $filterData->name = $request->input('name');
+            $filterData->surname = $request->input('surname');
+            $request->session()->put('owner_filter', $filterData);
         }
+    
+        if ($request->has('show_all')) {
+            $request->session()->forget('owner_filter');
+            $owners = Owner::with('cars')->orderBy('name')->get();
+        }
+        return view('owners.index',[
+            "owners" => $owners,
+            "filterData" => $filterData,
+        ]);
+    }   
         
     /**
      * Show the form for creating a new resource.
@@ -83,6 +79,13 @@ class OwnerController extends Controller
     public function edit($id)
     {
         $owner = Owner::findOrFail($id);
+        try {
+            $this->authorize('update', $owner);
+        } catch (\Illuminate\Auth\Access\AuthorizationException) {
+            Session::flash('message', __("You have no permissions given to access."));
+            Session::flash('alert-class', 'alert-warning');
+            return redirect()->route('owners.index');
+        }
         return view('owners.edit', ['owner' => $owner]);
     }
 
@@ -93,6 +96,11 @@ class OwnerController extends Controller
     {
        
         $owner = Owner::findOrFail($id);
+        if (! $request->user()->can('update',$owner)){
+            Session::flash('message', __("You have no permissions given to access."));
+            Session::flash('alert-class', 'alert-warning');
+            return redirect()->route("owners.index");
+        }
         $owner->update($request->all());
     
         if ($owner) {
@@ -109,8 +117,16 @@ class OwnerController extends Controller
      */
     public function destroy($id)
     {
-        
         $owner = Owner::findOrFail($id);
+
+        try {
+            $this->authorize('delete', $owner);
+        } catch (\Illuminate\Auth\Access\AuthorizationException) {
+            Session::flash('message', __("You have no permissions given to access."));
+            Session::flash('alert-class', 'alert-warning');
+            return redirect()->route('owners.index');
+        }
+        
         $owner->delete();
         Session::flash('message', __("Owner Listing deleted successfully"));
         Session::flash('alert-class', 'alert-success');

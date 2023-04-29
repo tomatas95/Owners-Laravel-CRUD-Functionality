@@ -45,6 +45,7 @@
                 </tr>
                 @unless ($cars->isEmpty())
                     @foreach ($cars as $car)
+                    @can('viewAny', $car)
                         <tr>
                             <td>{{ $car->reg_number }}</td>
                             <td>{{ $car->model }}</td>
@@ -52,15 +53,20 @@
                             <td>{{ $car->owner->name }}</td>
                             <td>
                                 <div class="d-inline-block">
+                                    @can('update', $car)
                                     <a href="cars/{{ $car->id }}/edit"><i class="text-warning fa-lg fa-solid fa-pen-to-square me-2 edit"></i></a>
+                                    @endcan
+                                    @can('delete', $car)
                                     <form method="POST" action="{{ route('cars.destroy', [$car->id]) }}">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit"><i class="text-danger fa-lg fa-solid fa-trash delete"></i></button>
                                     </form>
+                                    @endcan
                                 </div>
                             </td>
                         </tr>
+                        @endcan
                     @endforeach
                 @else
                 <tr class="text-center">
@@ -68,7 +74,6 @@
                         <p class="mb-0">{{ __("Either such Car Listing is not Found or the table is empty!") }}</p>
                     </td>
                 </tr>
-                
                 @endunless
             </tbody>
         </table>

@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,10 +17,12 @@ class OwnerFactory extends Factory
      */
     public function definition(): array
     {
+        $user_id = User::inRandomOrder()->first()->id; // Get a random user id from the User model
         return [
             'name' => fake()->firstName(),
             'surname' => fake()->lastName(),
             'years' => rand(18,100),
+            'user_id' => $user_id,
         ];
     }
 }

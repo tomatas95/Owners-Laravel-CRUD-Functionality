@@ -25,17 +25,17 @@ class CarController extends Controller
      */
     public function index(Request $request)
     {
-        $filterCars = $request->session()->get('filterCars', (object)['reg_number' => null, 'model' => null, 'brand' => null, 'owner_id' => null]);
+            $filterCars = $request->session()->get('filterCars', (object)['reg_number' => null, 'model' => null, 'brand' => null, 'owner_id' => null]);
 
-        $cars = Car::with('owner')->filter($filterCars)->orderBy('reg_number')->get();
-
-        $owners = Owner::orderBy('name')->get();
-
-        return view('cars.index',[
-            'cars' => $cars,
-            'filterCars' => $filterCars,
-            'owners' => $owners,
-        ]);
+            $cars = Car::with('owner')->filter($filterCars)->orderBy('reg_number')->get();
+    
+            $owners = Owner::orderBy('name')->get();
+    
+            return view('cars.index',[
+                'cars' => $cars,
+                'filterCars' => $filterCars,
+                'owners' => $owners,
+            ]);
     }
     
     /**
@@ -89,6 +89,13 @@ class CarController extends Controller
         
         $owners = Owner::all();
         $car = Car::findOrFail($id);
+        try {
+            $this->authorize('update', $car);
+        } catch (\Illuminate\Auth\Access\AuthorizationException) {
+            Session::flash('message', __("You have no permissions given to access."));
+            Session::flash('alert-class', 'alert-warning');
+            return redirect()->route('cars.index');
+        }
         return view('cars.edit', ['car' => $car], compact('owners'));
     }
 
@@ -98,6 +105,12 @@ class CarController extends Controller
     public function update(CarRequest $request, $id)
     {        
         $car = Car::findOrFail($id);
+
+        if (! $request->user()->can('update',$car)){
+            Session::flash('message', __("You have no permissions given to access."));
+            Session::flash('alert-class', 'alert-warning');
+            return redirect()->route("cars.index");
+        }
         
         if ($request->hasFile('car_photos')) {
             $car_photos = $request->file('car_photos');
@@ -123,6 +136,13 @@ class CarController extends Controller
     public function destroy($id)
     {
         $car = Car::findOrFail($id);
+        try {
+            $this->authorize('delete', $car, 'You are not authorized to edit this car.');
+        } catch (\Illuminate\Auth\Access\AuthorizationException) {
+            Session::flash('message', __("You have no permissions given to access."));
+            Session::flash('alert-class', 'alert-warning');
+            return redirect()->route('cars.index');
+        }
         $car->delete();
         Session::flash('message', __("Car Listing deleted successfully!"));
         Session::flash('alert-class', 'alert-success');

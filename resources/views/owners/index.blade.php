@@ -33,31 +33,36 @@
                     </form>
                 </tr>
                 @unless ($owners->isEmpty())
-                    @foreach ($owners as $owner)
-                        <tr>
-                            <td>{{ $owner->name }}</td>
-                            <td>{{ $owner->surname }}</td>
-                            <td>{{ $owner->years }}</td>
-                            <td>
-                                <ul>
-                                    @foreach ($owner->cars as $car)
-                                        <li class="center-line">{{ $car->reg_number }}, {{ $car->model }}, {{ $car->carname }}</li>
-                                    @endforeach
-                                </ul>
-                            </td>
-                            <td>
-                                <div class="d-inline-block">
-                                    <a href="owners/{{ $owner->id }}/edit"><i class="text-warning fa-lg fa-solid fa-pen-to-square me-2 edit"></i></a>
-                                    <form method="POST" action="{{ route('owners.destroy', [$owner->id]) }}">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit"><i class="text-danger fa-lg fa-solid fa-trash delete"></i></button>
-                                        
-                                    </form>
-                                </div>
-                            </td>
-                        </tr>
-                    @endforeach
+                @foreach ($owners as $owner)
+                @can('viewAny', $owner)
+                <tr>
+                        <td>{{ $owner->name }}</td>
+                        <td>{{ $owner->surname }}</td>
+                        <td>{{ $owner->years }}</td>
+                        <td>
+                            <ul>
+                                @foreach ($owner->cars as $car)
+                                    <li class="center-line">{{ $car->reg_number }}, {{ $car->model }}, {{ $car->carname }}</li>
+                                @endforeach
+                            </ul>
+                        </td>
+                        <td>
+                            <div class="d-inline-block">
+                                @can('update', $owner)
+                                <a href="owners/{{ $owner->id }}/edit"><i class="text-warning fa-lg fa-solid fa-pen-to-square me-2 edit"></i></a>
+                                @endcan
+                                @can('delete', $owner)  
+                                <form method="POST" action="{{ route('owners.destroy', [$owner->id]) }}">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit"><i class="text-danger fa-lg fa-solid fa-trash delete"></i></button>
+                                </form>
+                                @endcan
+                            </div>
+                        </td>
+                    </tr>
+                    @endcan
+                @endforeach
                 @else
                 <tr class="text-center">
                     <td class="px-4 py-8 border-top border-bottom border-gray text-lg" colspan="5">
