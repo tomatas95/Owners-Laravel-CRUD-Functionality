@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\OwnerRequest;
-use Illuminate\Http\Request;
-use App\Models\Owner;
-use Illuminate\Support\Facades\Session;
 use stdClass;
+use App\Models\Owner;
+use Illuminate\Http\Request;
+use App\Http\Requests\OwnerRequest;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class OwnerController extends Controller
 {
@@ -51,18 +52,20 @@ class OwnerController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(OwnerRequest $request)
-{   
-
-    $owner = Owner::create($request->all());
-
-    if ($owner) {
-        Session::flash('message', __("A new Owner has been created successfully!"));
-        Session::flash('alert-class', 'alert-success');
-        return redirect('/owners');
-    } else {
-        return redirect('/owners/create')->withErrors([__("An error occurred while creating the owner")]);
+    {   
+        $owner = new Owner($request->all());
+        $owner->user()->associate(Auth::user());
+        $owner->save();
+    
+        if ($owner) {
+            Session::flash('message', __("A new Owner has been created successfully!"));
+            Session::flash('alert-class', 'alert-success');
+            return redirect('/owners');
+        } else {
+            return redirect('/owners/create')->withErrors([__("An error occurred while creating the owner")]);
+        }
     }
-}
+    
 
 
     /**
